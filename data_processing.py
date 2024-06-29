@@ -57,7 +57,7 @@ flight_data.head()
 n_row = len(flight_data[:,0])
 ## Weather conditions
 flight_data['Weather'] = np.random.choice(['snow','rain','sun',
-                                           'fog','storm'], n_row)
+                                           'fog','storm'], 100)
 
 
 ## Seasonal factors

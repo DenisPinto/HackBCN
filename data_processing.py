@@ -54,6 +54,7 @@ flight_data.info()
 flight_data.head()
 
 # Create new variables
+np.random.seed(42)
 n_row = len(flight_data[:,0])
 ## Weather conditions
 flight_data['Weather'] = np.random.choice(['snow','rain','sun',
@@ -61,20 +62,24 @@ flight_data['Weather'] = np.random.choice(['snow','rain','sun',
 
 
 ## Seasonal factors
-
+flight_data['Season'] = np.random.choice(['Winter', 'Spring', 'Summer', 'Autumn'], n_row)
 
 
 ## Holidays
-
+flight_data['Holiday'] = np.random.choice([0, 1], n_row, p=[0.9, 0.1]) # 10% of holiday probability, 1 holiday every 10 flight days
 
 
 ## Political factors
+sanction_levels = ['No sanctions', 'Economic sanctions', 'Flight restrictions']
+flight_data['Sanction_Level'] = np.random.choice(sancion_levels, n_row, p=[0.7, 0.2, 0.1]) # 70%, 20%, 10%
+
+flight_data['Security_Alert'] = np.random.choice([0, 1], n_row, p=[0.95, 0.05])
 
 
 
 ## Airport condition
-
-
+flight_data['Runway_Condition'] = np.random.choice(['Good', 'Fair', 'Poor'], n_row, p=[0.7, 0.2, 0.1])
+flight_data['Operational_Issues'] = np.random.choice([0, 1], n_row, p=[0.95, 0.05])
 
 
 airlines = flight_data['Airline'].unique()

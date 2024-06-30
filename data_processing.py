@@ -5,7 +5,11 @@ import seaborn as sns
 
 
 
+<<<<<<< Updated upstream
 flight_data = pd.read_csv('./Airlines.csv')
+=======
+flight_data = pd.read_csv('Airlines.csv')
+>>>>>>> Stashed changes
 flight_data.info()
 
 

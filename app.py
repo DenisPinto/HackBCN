@@ -4,7 +4,7 @@ import pandas as pd
 import joblib
 from tqdm import tqdm
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='static')
 
 # Cargar el modelo entrenado
 model = joblib.load('rf_model.joblib')
@@ -37,8 +37,16 @@ def predict():
     # Realizar la predicción
     prediction = model.predict(flight_data)[0]
 
-    # Devolver el resultado como respuesta JSON
-    return jsonify({'prediction': str(prediction)})
+    # Determine the result message and style
+    if prediction == 1:  # Adjust condition based on your model's output
+        result_message = 'Your flight is delayed'
+        result_style = 'delayed-style'
+    else:
+        result_message = 'Your flight is on time'
+        result_style = 'on-time-style'
+
+    # Render the result.html template with the prediction result and style
+    return render_template('result.html', result_message=result_message, result_style=result_style)
 
 if __name__ == '__main__':
     app.run(debug=True)

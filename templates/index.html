@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight Delay Predict Chatbot</title>
+</head>
+<body>
+    <h1>Flight Delay Predict Chatbot</h1>
+    <form action="/predict" method="post">
+        <label for="Flight">Flight Number:</label>
+        <input type="text" id="Flight" name="Flight" required><br><br>
+        
+        <label for="Airline">Airline:</label>
+        <input type="text" id="Airline" name="Airline" required><br><br>
+        
+        <label for="AirportFrom">Departure Airport:</label>
+        <input type="text" id="AirportFrom" name="AirportFrom" required><br><br>
+        
+        <label for="AirportTo">Arrival Airport:</label>
+        <input type="text" id="AirportTo" name="AirportTo" required><br><br>
+        
+        <label for="DayOfWeek">Day of Week:</label>
+        <input type="text" id="DayOfWeek" name="DayOfWeek" required><br><br>
+        
+        
+        
+        <button type="submit">Predict Delay</button>
+    </form>
+</body>
+</html>

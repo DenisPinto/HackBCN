@@ -1,4 +1,4 @@
-!url=C:\Users\axel_\OneDrive\Documentos\HACKIA\HackBCN\Flightlogo.png
+!url=https://github.com/DenisPinto/HackBCN/blob/main/Flight_logo.png
 
 # Flight Delay Predict Chatbot
 

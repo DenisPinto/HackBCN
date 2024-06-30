@@ -1,4 +1,5 @@
-!url=https://github.com/DenisPinto/HackBCN/blob/main/Flight_logo.png
+![Logo](https://github.com/DenisPinto/HackBCN/blob/main/Flight_logo.png)
+
 
 # Flight Delay Predict Chatbot
 

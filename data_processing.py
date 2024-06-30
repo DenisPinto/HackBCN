@@ -6,6 +6,7 @@ import seaborn as sns
 
 
 flight_data = pd.read_csv('Airlines.csv', nrows=50000)
+flight_data = pd.read_csv('Airlines.csv', nrows=50000)
 flight_data.info()
 
 
@@ -15,6 +16,7 @@ flight_data.isna().sum()
 print('Num rows to drop: ', len(flight_data)-len(flight_data.dropna()))
 flight_data = flight_data.dropna()
 '''
+# Total number of registered delayed and non delayed flights
 # Total number of registered delayed and non delayed flights
 no_delay = (flight_data['Delay'] == 0).sum()
 delay = (flight_data['Delay'] == 1).sum()
@@ -46,7 +48,12 @@ flight_data.drop(columns=['id','Time','Length'], inplace=True)
 
 
 
+
+
 # Create a route variable from departure and destination airport
+flight_data['Route'] = flight_data['AirportFrom'] + '-' + flight_data['AirportTo']
+
+
 flight_data['Route'] = flight_data['AirportFrom'] + '-' + flight_data['AirportTo']
 
 
@@ -62,9 +69,18 @@ flight_data.head(20)
 #Set random seed
 np.random.seed(42)  
 
+
+#Set random seed
+np.random.seed(42)  
+
 n_row = len(flight_data.iloc[:,0])
 
 ## Weather conditions
+probs_delay_0 = [0.75, 0.1, 0.05, 0.05, 0.05]
+probs_delay_1 = [0.2, 0.5, 0.1, 0.1, 0.1]
+weather_0 = np.random.choice(['sun', 'rain', 'snow', 'fog', 'storm'], len(flight_data), p=probs_delay_0)
+weather_1 = np.random.choice(['sun', 'rain', 'snow', 'fog', 'storm'], len(flight_data), p=probs_delay_1)
+flight_data['Weather'] = np.where(flight_data['Delay'] == 0, weather_0, weather_1)
 probs_delay_0 = [0.75, 0.1, 0.05, 0.05, 0.05]
 probs_delay_1 = [0.2, 0.5, 0.1, 0.1, 0.1]
 weather_0 = np.random.choice(['sun', 'rain', 'snow', 'fog', 'storm'], len(flight_data), p=probs_delay_0)
@@ -100,6 +116,8 @@ for column in to_dummies:
     print(f'Converting {column} column')
     flight_data = pd.get_dummies(flight_data, columns=[column], dtype=int)
 
+
+flight_data.to_csv('Airlines_with_dummies.csv', index=False)
 
 flight_data.to_csv('Airlines_with_dummies.csv', index=False)
 
